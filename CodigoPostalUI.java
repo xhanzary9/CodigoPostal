@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Renoir
@@ -28,13 +27,19 @@ public class CodigoPostalUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
+        // try {
+        //  javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+        // } catch (Exception ex) {
+        //      //
+        // }
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        noValidoMsg = new javax.swing.JLabel();
+        validoMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validador de Codigos Postales");
@@ -66,11 +71,17 @@ public class CodigoPostalUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(255, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("EL CODIGO POSTAL NO ES VALIDO");
-        jLabel3.setVisible(false);
+        noValidoMsg.setBackground(new java.awt.Color(255, 0, 0));
+        noValidoMsg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        noValidoMsg.setForeground(new java.awt.Color(255, 0, 0));
+        noValidoMsg.setText("EL C\u00d3DIGO POSTAL NO ES V\u00c1LIDO");
+        noValidoMsg.setVisible(false);
+        validoMsg.setBackground(new java.awt.Color(255, 0, 0));
+        validoMsg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        validoMsg.setForeground(new java.awt.Color(0, 153, 0));
+        validoMsg.setText("EL C\u00d3DIGO POSTAL ES V\u00c1LIDO");
+        validoMsg.setVisible(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -78,7 +89,7 @@ public class CodigoPostalUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
+                    .addComponent(noValidoMsg)
                     .addComponent(jButton1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -87,7 +98,8 @@ public class CodigoPostalUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
-                            .addComponent(jComboBox1, 0, 172, Short.MAX_VALUE))))
+                            .addComponent(jComboBox1, 0, 172, Short.MAX_VALUE)))
+                    .addComponent(validoMsg))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,7 +114,9 @@ public class CodigoPostalUI extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(noValidoMsg)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(validoMsg)
                 .addGap(9, 9, 9)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -132,17 +146,27 @@ public class CodigoPostalUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                           
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {    
-        String value = jTextField1.getText();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {  
+        //Si ya estan visibles
+        validoMsg.setVisible(false);
+        noValidoMsg.setVisible(false);
+
+        String cp = jTextField1.getText();
         String pais = jComboBox1.getSelectedItem().toString();
         pais = java.text.Normalizer.normalize(pais, java.text.Normalizer.Form.NFD);
         pais = pais.replaceAll("[^\\p{ASCII}]", "");
         FabricaCodigosPostales fabrica = new FabricaCodigosPostales();
-        CodigoPostal codigo = fabrica.creaCodigoPostal("Canada","R3R 4R4");
+        CodigoPostal codigo = fabrica.creaCodigoPostal(pais, cp);
         Validar validar = new CodigoPostalValidador();
+
+        if (validar.valida(codigo)) {
+            validoMsg.setVisible(true);
+        } else {
+            noValidoMsg.setVisible(true);
+        }
         System.out.println(validar.valida(codigo));
-        System.out.println(value + " " + pais);                                 
-        jLabel3.setVisible(true);
+        System.out.println(cp + " " + pais);                                 
+        
     }                                        
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -190,8 +214,9 @@ public class CodigoPostalUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel noValidoMsg;
+    private javax.swing.JLabel validoMsg;
     // End of variables declaration                   
 }
