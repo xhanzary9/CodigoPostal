@@ -1,5 +1,3 @@
-package codigopostal;
-
 import java.io.IOException;
 
 /** 
