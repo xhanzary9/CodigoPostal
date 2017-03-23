@@ -21,7 +21,7 @@ public class FabricaCodigosPostales {
             return new CodigoPostalCanada(codigopostal);
         }
         if(nombreEntidad.equalsIgnoreCase("China")){
-            return new CodigoPostalCanada(codigopostal);
+            return new CodigoPostalChina(codigopostal);
         }
         return null;
     }
