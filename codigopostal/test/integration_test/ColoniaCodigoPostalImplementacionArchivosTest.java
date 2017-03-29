@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package codigopostal;
+package integration_test;
 
+import codigopostal.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,6 +65,7 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
         coloniaCp = new ColoniaCodigoPostalImplementacionArchivos();
         colonia = coloniaCp.colonia(codigo);
         assertNotNull("Código debería ser distinto de null", codigo);
+    
         assertNotNull("Colonia no debería ser null", colonia);
         assertTrue("Esta colonia no debería estar registrada", colonia.contains("Colonia no registrada"));
 
@@ -123,5 +125,7 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
         colonia = coloniaCp.colonia(codigo);
         assertTrue("Esta colonia debería estar registrada", colonia.contains("DesboroPO Boxes"));
     }
+    
+    
 
 }

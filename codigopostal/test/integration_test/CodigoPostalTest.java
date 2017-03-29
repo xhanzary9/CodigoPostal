@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package codigopostal;
+package integration_test;
 
+import codigopostal.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,11 +19,11 @@ import static org.junit.Assert.*;
  */
 public class CodigoPostalTest {
 
-    String pais;
-    String cp;
-    FabricaCodigosPostales fabrica = new FabricaCodigosPostales();
-    Validar validar = new CodigoPostalValidador();
-    CodigoPostal codigo;
+    private String pais;
+    private String cp;
+    private FabricaCodigosPostales fabrica = new FabricaCodigosPostales();
+    private Validar validar = new CodigoPostalValidador();
+    private CodigoPostal codigo;
 
     @Test
     public void testValidaciónCodigoPostal() {

@@ -38,7 +38,7 @@ public class CodigoPostalValidador implements Validar {
      * @return true en caso de que sean iguales los dos caracteres o simbolicen
      * el mismo tipo de dato
      */
-    private boolean caracterValido(char caracterCodigoPostal, char caracterExpresionRegular) {
+    public boolean caracterValido(char caracterCodigoPostal, char caracterExpresionRegular) {
         if (caracterExpresionRegular == '#') {
             return Character.isDigit(caracterCodigoPostal);
         } else {
@@ -53,4 +53,5 @@ public class CodigoPostalValidador implements Validar {
         return false;
     }
 
+    
 }
