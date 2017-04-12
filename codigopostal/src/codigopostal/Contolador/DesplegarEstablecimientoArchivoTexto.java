@@ -28,7 +28,13 @@ public class DesplegarEstablecimientoArchivoTexto implements DeplegarEstablecimi
         }
 
     }
-
+    /**
+     * Metodo auxiliar que obtiene todos los establecimientos por colonia
+     * @param colonia Colonia que se desean buscar los establecimentos 
+     * @param pais Pais al que pretenece la colonia
+     * @return lista con todos los establecimientos de la colonia solicitada
+     * @throws IOException 
+     */
     private List<Establecimiento> obtenerEstablecimientos(Colonia colonia, String pais) throws IOException {
         String nombreArchivo = "./BaseDatos/Establecimientos/Establecimientos.txt";
         File archivo = new File(nombreArchivo);
@@ -72,6 +78,12 @@ public class DesplegarEstablecimientoArchivoTexto implements DeplegarEstablecimi
         }
         return establecimientos;
     }
+    /**
+     * MEtodo que obtiene todos los servicios que ofrece un establecimiento 
+     * @param establecimiento Establecimiento  en cuetion
+     * @return lista de servicios que ofrece el establecimiento
+     * @throws IOException 
+     */
 
     private List<Servicio> serviciosEstablecimiento(Establecimiento establecimiento) throws IOException {
         String nombreArchivo = "./BaseDatos/Establecimientos/Servicios.txt";

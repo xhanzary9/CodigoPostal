@@ -19,7 +19,7 @@ public class AgendarCitasInternet implements AgendarCitas {
 
     @Override
     public void AgendarCita(Establecimiento establecimiento,Servicio servicio, Date horario) throws EstablecimientoCerradoExcepcion {
-        Date hora = elegirHorario(establecimiento, horario);
+        Date hora = validarHorario(establecimiento, horario);
         Cita cita = new CitaNormal(establecimiento, hora, servicio);
         ManejaCitas manejador = new ManejaCitasInternet();
         if(manejador.disponible(cita)){
@@ -29,13 +29,14 @@ public class AgendarCitasInternet implements AgendarCitas {
         }
     }
     /**
-     * 
-     * @param establecimiento
-     * @param horario
-     * @return
-     * @throws EstablecimientoCerradoExcepcion 
+     * Metodo que encarga de validar que la fecha y hora este dentro del rango aceptable para poder 
+     * ser atendidos
+     * @param establecimiento Establecimiento que se solicita la cita
+     * @param horario Horario que se prende la cita
+     * @return horario que se pretende la cita si este es valido
+     * @throws EstablecimientoCerradoExcepcion Se arroja cuando el horario o dia no es habil para el establecimiento 
      */
-    private Date elegirHorario(Establecimiento establecimiento, Date horario) throws EstablecimientoCerradoExcepcion {
+    private Date validarHorario(Establecimiento establecimiento, Date horario) throws EstablecimientoCerradoExcepcion {
         if (diaHabil(establecimiento.getHorarioServicio(), horario)) {
             throw new EstablecimientoCerradoExcepcion("Establecimiento no disponible en el dia selecionado"
                     + "\n el horario del establecimiento " + establecimiento.getNombre() + " es " + establecimiento.getHorarioServicio());
@@ -47,9 +48,9 @@ public class AgendarCitasInternet implements AgendarCitas {
         return horario;
     }
     /**
-     * 
-     * @param horario
-     * @param dias
+     * MEtodo que sirve para decir si un dia es habil en el establecimiento
+     * @param horario Horario de servicio del establecimiento
+     * @param dias Objeto del tipo date que guarda el dia que se desea la cita
      * @return 
      */
     private boolean diaHabil(String horario, Date dias) {
@@ -63,9 +64,9 @@ public class AgendarCitasInternet implements AgendarCitas {
         return false;
     }
     /**
-     * 
+     * Metodo que regresa los dias habiles del establecimiento
      * @param horario
-     * @return 
+     * @return un arreglo que facilita el manejo de dias para el sistema 
      */
     private int[] diasHabiles(String horario) {
         int[] arregloDias = new int[7];
@@ -92,10 +93,12 @@ public class AgendarCitasInternet implements AgendarCitas {
         return arregloDias;
     }
     /**
-     * 
-     * @param horarioServicio
-     * @param horario
-     * @return 
+     * Metodo privado que sirve para saber si la hora especificada por el usuario se 
+     * encuentra dentro del periodo que esta activo el establecimiento 
+     * @param horarioServicio Horario semanal del estableciemto
+     * @param horario horario solicitado por el usuario
+     * @return true en caso de que el horario se encuetre dentrodel horario de servicio del dia escogido por el usuario 
+     * false en otro caso
      */
     private boolean horasHabiles(String horarioServicio, Date horario) {
         horarioServicio = horarioDelDiaEscogido(horario, horarioServicio);
@@ -118,10 +121,10 @@ public class AgendarCitasInternet implements AgendarCitas {
         return false;
     }
     /**
-     * 
-     * @param horario
-     * @param horarioServicio
-     * @return 
+     * regresa el horario del dia escogido 
+     * @param horario Fecha y hora que escogio el usuario
+     * @param horarioServicio Horario Semanal del establecimiento
+     * @return cadena con el horario del dia solicitado
      */
     private String horarioDelDiaEscogido(Date horario, String horarioServicio) {
         Calendar c = Calendar.getInstance();
@@ -163,8 +166,8 @@ public class AgendarCitasInternet implements AgendarCitas {
 
     }
     /**
-     * 
-     * @param cita 
+     * Metodo que se encarga de guardar la cita
+     * @param cita Solicitud de la cita que se guardara en la base de datos.
      */
     private void guardarCita(Cita cita) {
         ManejaCitas citas = new ManejaCitasInternet();

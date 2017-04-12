@@ -97,7 +97,12 @@ public class ManejaCitasInternet implements ManejaCitas {
         }
         return false;
     }
-
+    /**
+     * Metodo para buscar una cita por su identificador
+     * @param identificador valor que sirve para identificar una cita
+     * @return Cita que representa el identificador y el establecimiento
+     * @throws IOException 
+     */
     public Cita buscarCita(int identificador) throws IOException {
         String nombreArchivo = "./BaseDatos/citas/Citas.txt";
         File archivo = new File(nombreArchivo);

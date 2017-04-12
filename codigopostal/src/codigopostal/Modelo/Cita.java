@@ -4,6 +4,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Cita {
+    /**
+     * id Identificador de la cita 
+     * establecimiento local que ofrece el servicio solicitado
+     * horario fecha y hora de la  cita
+     * servicio trabajo que se efectuara
+     */
     private int id;
     private Establecimiento establecimiento;
     private Date horario;
