@@ -5,6 +5,10 @@
  */
 package codigopostal;
 
+import codigopostal.Contolador.Validar;
+import codigopostal.Contolador.FabricaCodigosPostales;
+import codigopostal.Contolador.CodigoPostalValidador;
+import codigopostal.Modelo.CodigoPostal;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -1,5 +1,7 @@
 package codigopostal;
 
+import codigopostal.Vista.CodigoPostalUI;
+
 
 public class Main {
     public static void main(String[] args) {

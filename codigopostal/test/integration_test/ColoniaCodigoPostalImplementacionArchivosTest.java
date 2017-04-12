@@ -5,6 +5,9 @@
  */
 package integration_test;
 
+import codigopostal.Contolador.FabricaCodigosPostales;
+import codigopostal.Contolador.ColoniaCodigoPostalImplementacionArchivos;
+import codigopostal.Modelo.CodigoPostal;
 import codigopostal.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,14 +49,14 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
         codigo = fabrica.creaCodigoPostal(pais, cp);
 
         coloniaCp = new ColoniaCodigoPostalImplementacionArchivos();
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertNotNull("Código debería ser distinto de null", codigo);
         assertNotNull("Colonia no debería ser null", colonia);
         assertTrue("Esta colonia no debería estar registrada", colonia.contains("Colonia no registrada"));
 
         cp = "55717";
         codigo = fabrica.creaCodigoPostal(pais, cp);
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertTrue("Esta colonia debería estar registrada", colonia.contains("Coacalco de BerriozabalBosques"));
     }
 
@@ -63,7 +66,7 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
         codigo = fabrica.creaCodigoPostal(pais, cp);
 
         coloniaCp = new ColoniaCodigoPostalImplementacionArchivos();
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertNotNull("Código debería ser distinto de null", codigo);
     
         assertNotNull("Colonia no debería ser null", colonia);
@@ -71,7 +74,7 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
 
         cp = "260-0006";
         codigo = fabrica.creaCodigoPostal(pais, cp);
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertTrue("Esta colonia debería estar registrada", colonia.contains("Dojo Kita"));
     }
 
@@ -81,14 +84,14 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
         codigo = fabrica.creaCodigoPostal(pais, cp);
 
         coloniaCp = new ColoniaCodigoPostalImplementacionArchivos();
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertNotNull("Código debería ser distinto de null", codigo);
         assertNotNull("Colonia no debería ser null", colonia);
         assertTrue("Esta colonia no debería estar registrada", colonia.contains("Colonia no registrada"));
 
         cp = "100050";
         codigo = fabrica.creaCodigoPostal(pais, cp);
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertTrue("Esta colonia debería estar registrada", colonia.contains("Xuanwu"));
     }
 
@@ -98,14 +101,14 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
         codigo = fabrica.creaCodigoPostal(pais, cp);
 
         coloniaCp = new ColoniaCodigoPostalImplementacionArchivos();
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertNotNull("Código debería ser distinto de null", codigo);
         assertNotNull("Colonia no debería ser null", colonia);
         assertTrue("Esta colonia no debería estar registrada", colonia.contains("Colonia no registrada"));
 
         cp = "24205";
         codigo = fabrica.creaCodigoPostal(pais, cp);
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertTrue("Esta colonia debería estar registrada", colonia.contains("Bristol Merchandise"));
     }
 
@@ -115,14 +118,14 @@ public class ColoniaCodigoPostalImplementacionArchivosTest {
         codigo = fabrica.creaCodigoPostal(pais, cp);
 
         coloniaCp = new ColoniaCodigoPostalImplementacionArchivos();
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertNotNull("Código debería ser distinto de null", codigo);
         assertNotNull("Colonia no debería ser null", colonia);
         assertTrue("Esta colonia no debería estar registrada", colonia.contains("Colonia no registrada"));
 
         cp = "N0H 1K0";
         codigo = fabrica.creaCodigoPostal(pais, cp);
-        colonia = coloniaCp.colonia(codigo);
+        colonia = coloniaCp.colonia(codigo).getNombre();
         assertTrue("Esta colonia debería estar registrada", colonia.contains("DesboroPO Boxes"));
     }
     
