@@ -1,2 +1,27 @@
 
 
+
+Cita id : 74{
+Establecimiento :  Clinica Odontologia privada Doctor Rojas
+Fecha : 14/04/2017
+Hora : 16:46
+Servicio :  Ortodoncia
+}
+Cita id : 78{
+Establecimiento :  Clinica Odontologia privada Doctor Rojas
+Fecha : 14/04/2017
+Hora : 16:50
+Servicio :  Ortodoncia
+}
+Cita id : 79{
+Establecimiento :  Clinica Odontologia privada Doctor Rojas
+Fecha : 14/04/2017
+Hora : 16:51
+Servicio :  Ortodoncia
+}
+Cita id : 84{
+Establecimiento :  Clinica Odontologia privada Doctor Rojas
+Fecha : 14/04/2017
+Hora : 16:56
+Servicio :  Ortodoncia
+}

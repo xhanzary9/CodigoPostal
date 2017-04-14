@@ -58,7 +58,6 @@ public class ManejaCitasInternet implements ManejaCitas {
                 if (linea.contains("Establecimiento")) {
                     String nombre = linea.substring(linea.indexOf(":") + 1);
                     if (cita.getEstablecimiento().getNombre().trim().equalsIgnoreCase(nombre.trim())) {
-                        System.out.println("pasa");
                         mismoEstablecimiento = true;
                     }
                 }

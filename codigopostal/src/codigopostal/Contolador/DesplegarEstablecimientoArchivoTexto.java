@@ -44,14 +44,10 @@ public class DesplegarEstablecimientoArchivoTexto implements DeplegarEstablecimi
         List<Establecimiento> establecimientos = new ArrayList<>();
         Establecimiento establecimiento = null;
         while ((linea = lector.readLine()) != null) {
-            if (linea.contains("Clinica Odontologia")) {
-                establecimiento = new Dentista();
-            }
-            if (linea.contains("Restaurante")) {
-
-                establecimiento = new Restaurante();
-            }
+            
             if (linea.contains("nombre")) {
+                FabricaEstableciminetos est = new FabricaEstableciminetos();
+                establecimiento = est.creaEstablecimiento(linea);
                 establecimiento.setNombre(linea.substring(linea.indexOf(":") + 1));
                 List<Servicio> serviciosOfrece = serviciosEstablecimiento(establecimiento);
                 establecimiento.setServiciosOfrece(serviciosOfrece);
