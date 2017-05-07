@@ -5,10 +5,16 @@ package codigopostal.Vista;
 
 import codigopostal.Contolador.CodigoPostalValidador;
 import codigopostal.Contolador.ColoniaCodigoPostalImplementacionArchivos;
+import codigopostal.Contolador.DesplegarEstablecimientoArchivoTexto;
 import codigopostal.Contolador.FabricaCodigosPostales;
 import codigopostal.Modelo.CodigoPostal;
 import codigopostal.Contolador.Validar;
 import codigopostal.Modelo.Colonia;
+import codigopostal.Modelo.Establecimiento;
+import codigopostal.Modelo.Servicio;
+import java.util.List;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -172,6 +178,7 @@ public class CodigoPostalUI extends javax.swing.JFrame {
         //Vueve a acultar mensajes
         this.codigoNoValidoLabel.setVisible(false);
         this.codigoValidoLabel.setVisible(false);
+        //Obtiene valores
         String cp = this.codigoPostalTextField.getText();
         String pais = this.paisesComboBox.getSelectedItem().toString();
         pais = java.text.Normalizer.normalize(pais, java.text.Normalizer.Form.NFD); //Quita los acentos
@@ -186,19 +193,67 @@ public class CodigoPostalUI extends javax.swing.JFrame {
             //Muestro la colonia: 
             ColoniaCodigoPostalImplementacionArchivos coloniaCp = new ColoniaCodigoPostalImplementacionArchivos();
             Colonia coloniaAux = coloniaCp.colonia(codigo);
-            String mensaje = (coloniaAux!=null)?coloniaAux.getNombre() : "Colonia no registrada";
-            String colonia = mensaje;
-            this.mensajesTextArea.setText(colonia);
+         
+            String mensaje = "";
+            if (coloniaAux != null) {
+                  mensaje = coloniaAux.getNombre();
+                  this.mensajesTextArea.setText(mensaje);
+                  despliegaServiciosUI(coloniaAux); //DESPLIEGO NUEVA VENTANA
+            } else {
+                mensaje = "Colonia no registrada";
+                this.mensajesTextArea.setText(mensaje);
+            }
+            
+  
         } else {
             this.codigoNoValidoLabel.setVisible(true);
             cambiaMensajeComboBox(pais);
         }
         System.out.println(validar.valida(codigo));
         System.out.println(cp + " " + pais);           
-        //System.out.println(pais);
-       // this.mensajesTextArea.setText(this.FORMATO_MEX_MSG);
+        
     }//GEN-LAST:event_validarOnClick
     
+    /**
+     * Despliega la tabla de ServicioUI con la info correspondiente. 
+     * @param colonia la colonia del codigo postal recibido. 
+    */
+    private void despliegaServiciosUI(Colonia colonia) {
+        //Obtengo establecimientos
+        DesplegarEstablecimientoArchivoTexto desp = new DesplegarEstablecimientoArchivoTexto();
+        List<Establecimiento> establecimientos = desp.establecimientoEnColonia(colonia);
+        int numEst = establecimientos.size();
+        //Contruyo el modelo de la tabla
+        Object[] columnas = {"Nombre", "Dirección", "Telefono", "Servicios", ""};
+        Object[][] datos = new Object[numEst][5];
+        //Lleno los datos por estableciemiento 
+        for (int i = 0; i < datos.length; i++) {
+            Establecimiento current = establecimientos.get(i);
+            //System.out.println(current.getHorarioServicio());
+            datos[i][0] = current.getNombre();
+            datos[i][1] = current.getDireccion();
+            datos[i][2] = current.getTelefono();
+            datos[i][3] = serviciosEstablecimiento(current);
+            datos[i][4] = "RESERVAR"; //EL boton
+        }
+        DefaultTableModel modelo = new DefaultTableModel(datos, columnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               return column == 4;
+            }
+       };
+       //Muestro nueva ventana. 
+       ServiciosUI serviciosui = new ServiciosUI(modelo, establecimientos);
+       serviciosui.setVisible(true);
+    }
+    
+    private String serviciosEstablecimiento(Establecimiento est) {
+        String serv = "";
+        for (Servicio servicio : est.getServiciosOfrece()) {
+            serv += servicio.getNombreServicio() + ", ";
+        }
+        return serv;
+    }
     /*Este método se ejecuta cuando se elije otro elemento en el ComboBox*/
     private void paisesComboBoxOnChange(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paisesComboBoxOnChange
         //Vueve a acultar mensajes
@@ -243,11 +298,11 @@ public class CodigoPostalUI extends javax.swing.JFrame {
      * @param args.
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            //
+        }
 
 
         /* Crea y despliega el formulario.  */

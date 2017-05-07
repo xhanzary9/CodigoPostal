@@ -15,6 +15,6 @@ public interface AgendarCitas {
     * @param horario Horario en el que se trata de agregar una cita
     * @throws EstablecimientoCerradoExcepcion  Excepcion que se arroja cuando el local no esta disponible en determinado horario.
     */
-    public void AgendarCita(Establecimiento establecimiento,Servicio servicio,Date horario) throws EstablecimientoCerradoExcepcion ;
+    public void AgendarCita(Establecimiento establecimiento, Servicio servicio, Date horario) throws EstablecimientoCerradoExcepcion ;
     
 }

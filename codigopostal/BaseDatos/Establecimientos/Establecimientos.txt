@@ -1,6 +1,6 @@
 Establecimiento {
 	nombre : Clinica Odontologia privada Doctor Rojas
-	direccion : 
+	direccion : avenida 5 #20
 	telefono : (55)5613-1340
 	colonia : 55717
 	horarioServicio : lunes de 10:00 a 23:59,martes de 10:00 a 20:59,miercoles de 00:00 a 23:59,jueves de 10:00 a 23:59,viernes de 10:00 a 20:00,sabado de 12:00 a 15:00
@@ -14,7 +14,7 @@ Establecimiento {
 };
 Establecimiento {
 	nombre : Restaurante Bellini
-	direccion :
+	direccion : Av. Del Iman #2
 	telefono : (55)5813-1340
 	colonia : 09200
 	horarioServicio :  lunes de 10:00 a 20:00,martes de 10:00 a 20:00,miercoles de 10:00 a 20:00,jueves de 10:00 a 20:00,viernes de 10:00 a 20:00,sabado de 12:00 a 15:00
@@ -35,7 +35,7 @@ Establecimiento {
 };
 Establecimiento {
 	nombre : Restaurante Bellini
-	direccion :
+	direccion : Av. del Iman #2
 	telefono : (55)5813-1340
 	colonia : 55717
 	horarioServicio :  lunes de 10:00 a 20:00,martes de 10:00 a 20:00,miercoles de 10:00 a 20:00,jueves de 10:00 a 20:00,viernes de 10:00 a 20:00,sabado de 12:00 a 15:00
