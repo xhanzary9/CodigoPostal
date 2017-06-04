@@ -49,3 +49,27 @@ Fecha : 19/04/2017
 Hora : 12:12
 Servicio :  Blanquemiento dientes
 }
+Cita id : 77{
+Establecimiento :  Clinica Odontologia privada Doctor Rojas
+Fecha : 08/05/2017
+Hora : 10:49
+Servicio :  Ortodoncia
+}
+Cita id : -913{
+Establecimiento :  Restaurante Bellini
+Fecha : 08/05/2017
+Hora : 11:02
+Servicio :  Cena para 2 personas
+}
+Cita id : -912{
+Establecimiento :  Restaurante Bellini
+Fecha : 08/05/2017
+Hora : 11:03
+Servicio :  Cena para 2 personas
+}
+Cita id : -906{
+Establecimiento :  Restaurante Bellini
+Fecha : 23/06/2017
+Hora : 11:20
+Servicio :  Cena para 2 personas
+}
